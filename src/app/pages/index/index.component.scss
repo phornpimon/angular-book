@@ -1,0 +1,21 @@
+:host {
+    .navbar-main {
+        width: 1051px;
+        display: flex;
+        justify-content: center;
+        .button-login {
+            border-radius: 1.5rem;
+        }
+    }
+
+    
+
+    .div-img {
+        display: flex;
+        justify-content: center;
+
+        .img {
+            width: 50%;
+        }
+    }
+}

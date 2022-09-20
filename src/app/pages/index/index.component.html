@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center bg-light">
+    <nav class="navbar navbar-expand-md navbar-light navbar-main">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    หมวดหนังสือ
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ng-container *ngFor="let item of master.bookcategory; index as i">
+                        <a class="dropdown-item" href="#">{{item.name}}</a>
+                    </ng-container>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li *ngFor="let item of master.menu; index as i" class="nav-item">
+                    <a class="nav-link" href="#">{{item.name}}</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-danger my-2 my-sm-0 button-login" type="submit">เข้าสู่ระบบ</button>
+            </form>
+        </div>
+    </nav>
+</div>
+<div class="d-flex justify-content-center">
+    <div>
+        <h2>บริการสืบค้นหนังสือ</h2>
+        <input type="text">
+    </div>
+</div>
+<div class="container" style="border: 1px solid red;">
+    <div class="row">
+        <div class="col-md-3 col-6" *ngFor="let item of listbook; index as i">
+            <div class="div-img"><img src="https://youtubeclone-joy.s3.ap-southeast-1.amazonaws.com/{{item.image}}" class="img"></div>
+            <div>{{item.bookname}}</div>
+            <div>{{item.author}}</div>
+        </div>
+    </div>
+</div>
