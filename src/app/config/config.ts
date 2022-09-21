@@ -8,9 +8,9 @@ const BASE = {
         BASE_PATH_API: ""
     },
 
-    //? staging
-    STAGING: {
-        BASE_API: "",
+    //? test
+    TEST: {
+        BASE_API: "https://www.anapioficeandfire.com/api",
         BASE_PATH_API: ""
     },
 

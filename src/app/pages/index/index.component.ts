@@ -41,6 +41,7 @@ export class IndexComponent implements OnInit {
   getAllbook(): void {
     this.bookservice.getAllBook().subscribe((data: any) => {
       if (data) {
+        console.log(`data`,data)
         this.listbook = data.books
       }
     })
