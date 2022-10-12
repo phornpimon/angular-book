@@ -1,4 +1,4 @@
-const SERVER = 'PROD'
+const SERVER = 'DEV'
 
 const BASE = {
 

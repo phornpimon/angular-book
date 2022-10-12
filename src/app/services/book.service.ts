@@ -12,7 +12,15 @@ export class BookService {
     private apiService: ApiService
   ) { }
 
-  getAllBook(): Observable<any> {
-    return this.apiService.get(`${this.apiPath}`)
+  getAllBook(offSet: number, pageSize: number): Observable<any> {
+    return this.apiService.get(`${this.apiPath}/offset=${offSet}/pageSize=${pageSize}`)
+  }
+
+  getBookCategory(category: any, offSet: number, pageSize: number): Observable<any> {
+    return this.apiService.get(`${this.apiPath}/category/offset=${offSet}/pageSize=${pageSize}?bookCategory=${category}`)
+  }
+
+  getBookByName(bookname: any): Observable<any> {
+    return this.apiService.get(`${this.apiPath}/search?bookname=${bookname}`)
   }
 }

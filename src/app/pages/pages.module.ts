@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { IMPORTS } from '../shared/imports';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
@@ -12,7 +12,7 @@ import { IndexComponent } from './index/index.component';
     IndexComponent
   ],
   imports: [
-    CommonModule,
+    ...IMPORTS,
     PagesRoutingModule
   ]
 })

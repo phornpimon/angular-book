@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center bg-light">
     <nav class="navbar navbar-expand-md navbar-light navbar-main">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand ml-2 text-danger" href="#">Enjoy Book</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -9,10 +9,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <ng-container *ngFor="let item of master.bookcategory; index as i">
-                        <a class="dropdown-item" href="#">{{item.name}}</a>
+                        <a class="dropdown-item cursor-pointer" (click)="getBooKCategory(item.code)">{{item.name}}</a>
                     </ng-container>
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
@@ -34,18 +32,58 @@
         </div>
     </nav>
 </div>
-<div class="d-flex justify-content-center">
-    <div>
-        <h2>บริการสืบค้นหนังสือ</h2>
-        <input type="text">
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 col-12">
+        </div>
+        <div class="col-md-6 col-12">
+            <div class="search-book">
+                <h2>บริการสืบค้นหนังสือ</h2>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control mt-2" placeholder="ค้นหา" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2" [(ngModel)]="input.searchbookname" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-danger mt-2" type="button"
+                            (click)="searchBookByName()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-12">
+        </div>
     </div>
 </div>
-<div class="container" style="border: 1px solid red;">
+<div *ngIf="true" class="container">
+    <div class="d-flex justify-content-between">
+        <div>
+            <div>ผลการสืบค้น 'CATEGORY: คอมพิวเตอร์'</div>
+            <div>พบ: 521 ชื่อเรื่อง</div>
+        </div>
+        <div>
+            เรียงลำดับโดย
+        </div>
+    </div>
+
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-3 col-6" *ngFor="let item of listbook; index as i">
-            <div class="div-img"><img src="https://youtubeclone-joy.s3.ap-southeast-1.amazonaws.com/{{item.image}}" class="img"></div>
+            <div class="div-img"><img src="https://storage-book.s3.us-west-2.amazonaws.com/{{item.image}}" class="img">
+            </div>
             <div>{{item.bookname}}</div>
             <div>{{item.author}}</div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div *ngIf="input.loadmore" class="more cursor-pointer" (click)="getLoadMore()">
+            <div class="icon">
+                <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+            </div>
+            <div class="text">
+                More
+            </div>
         </div>
     </div>
 </div>
