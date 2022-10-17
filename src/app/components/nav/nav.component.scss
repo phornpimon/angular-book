@@ -1,0 +1,15 @@
+:host {
+
+    .navbar-main {
+        width: 1051px;
+        display: flex;
+        justify-content: center;
+        .button-login {
+            border-radius: 1.5rem;
+        }
+    }
+    
+    .cursor-pointer {
+        cursor: pointer;
+    }
+}

@@ -1,37 +1,3 @@
-<div class="d-flex justify-content-center bg-light">
-    <nav class="navbar navbar-expand-md navbar-light navbar-main">
-        <a class="navbar-brand ml-2 text-danger" href="#">Enjoy Book</a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    หมวดหนังสือ
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <ng-container *ngFor="let item of master.bookcategory; index as i">
-                        <a class="dropdown-item cursor-pointer" (click)="getBooKCategory(item.code)">{{item.name}}</a>
-                    </ng-container>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li *ngFor="let item of master.menu; index as i" class="nav-item">
-                    <a class="nav-link" href="#">{{item.name}}</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline-danger my-2 my-sm-0 button-login" type="submit">เข้าสู่ระบบ</button>
-            </form>
-        </div>
-    </nav>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-3 col-12">
@@ -40,11 +6,12 @@
             <div class="search-book">
                 <h2>บริการสืบค้นหนังสือ</h2>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control mt-2" placeholder="ค้นหา" aria-label="Recipient's username"
-                        aria-describedby="basic-addon2" [(ngModel)]="input.searchbookname" />
+                    <input type="text" class="form-control mt-2" placeholder="ชื่อหนังสือ"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2"
+                        [(ngModel)]="input.searchbookname" />
                     <div class="input-group-append">
                         <button class="btn btn-outline-danger mt-2" type="button"
-                            (click)="searchBookByName()">Search</button>
+                            (click)="searchBookByName()">ค้นหา</button>
                     </div>
                 </div>
             </div>
@@ -53,25 +20,47 @@
         </div>
     </div>
 </div>
-<div *ngIf="true" class="container">
-    <div class="d-flex justify-content-between">
-        <div>
-            <div>ผลการสืบค้น 'CATEGORY: คอมพิวเตอร์'</div>
-            <div>พบ: 521 ชื่อเรื่อง</div>
-        </div>
-        <div>
-            เรียงลำดับโดย
-        </div>
-    </div>
-
-</div>
 <div class="container">
     <div class="row">
-        <div class="col-md-3 col-6" *ngFor="let item of listbook; index as i">
-            <div class="div-img"><img src="https://storage-book.s3.us-west-2.amazonaws.com/{{item.image}}" class="img">
+        <div class="col-md-1 col-12"></div>
+        <div class="col-md-5 col-6">
+            <ng-container *ngIf="input.searchShow">
+                <div>ผลการสืบค้น: {{input.searchText}}</div>
+                <div>พบ: {{input.searchCount}} ชื่อเรื่อง</div>
+            </ng-container>
+        </div>
+        <div class="col-md-5 col-6">
+            <div class="row" *ngIf="!input.searchShow">
+                <div class="col">
+                    <div class="sortby">
+                        เรียงลำดับโดย
+                    </div>
+                </div>
+                <div class="col">
+                    <select (change)="sortbyField()" [(ngModel)]="input.field" class="form-select" aria-label="Default select example">
+                        <option disabled selected hidden>เลือก</option>
+                        <option value="bookname">ชื่อเรื่อง</option>
+                        <option value="author">ชื่อผู้แต่ง</option>
+                    </select>
+                </div>
             </div>
-            <div>{{item.bookname}}</div>
-            <div>{{item.author}}</div>
+        </div>
+        <div class="col-md-1 col-12"></div>
+    </div>
+</div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 col-6" *ngFor="let item of bookservice.getListBook(); index as i">
+            <div class="book-item" (click)="getBook(item.id)">
+                <div class="div-img"><img src="https://storage-book.s3.us-west-2.amazonaws.com/{{item.image}}" class="img">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="div-desc">
+                        <p>ชื่อหนังสือ : {{item.bookname}}</p>
+                        <p>ชื่อผู้แต่ง : {{item.author}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

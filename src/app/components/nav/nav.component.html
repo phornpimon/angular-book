@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center bg-light">
+    <nav class="navbar navbar-expand-md navbar-light navbar-main">
+        <a class="navbar-brand ml-2 text-danger" href="/">Enjoy Book</a>
+        <div class="dropdown">
+            <button class="btn btn-light text-muted dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                หมวดหนังสือ
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <ng-container *ngFor="let item of master.bookcategory; index as i">
+                    <a class="dropdown-item cursor-pointer" (click)="searchBooKCategory(item.code)">{{item.name}}</a>
+                </ng-container>
+            </div>
+        </div>
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li *ngFor="let item of master.menu; index as i" class="nav-item">
+                    <a class="nav-link" href="#">{{item.name}}</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-danger my-2 my-sm-0 button-login" type="submit" routerLink="login">เข้าสู่ระบบ</button>
+            </form>
+        </div>
+    </nav>
+</div>
