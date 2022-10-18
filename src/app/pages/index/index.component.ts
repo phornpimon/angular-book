@@ -28,6 +28,7 @@ export class IndexComponent implements OnInit {
       pageSize: 8,
       searchShow: false
     }
+    console.log(`input`,this.input)
     this.getAllbook(this.input.offSet, this.input.pageSize)
   }
 
