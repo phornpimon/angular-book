@@ -80,6 +80,10 @@ export class IndexComponent implements OnInit {
     this.bookservice.getBookByField(field, offSet, pageSize).subscribe((data: any) => {
       if (data) {
         this.bookservice.listbook = data.books.content
+        this.input.flag = 'sortbook'
+        if (data.books.totalElements <= data.totalBook) {
+          this.input.loadmore = false
+        }
       }
     })
   }
