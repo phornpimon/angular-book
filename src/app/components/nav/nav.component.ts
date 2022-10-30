@@ -46,6 +46,9 @@ export class NavComponent implements OnInit {
       pageSize: 8,
       searchShow: false
     }
+    if (location.pathname == "/login") {
+      this.input.btnregister = true
+    }
   }
 
   searchBooKCategory(category: any): void {

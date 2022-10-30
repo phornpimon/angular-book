@@ -1,7 +1,8 @@
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const IMPORTS = [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 ]

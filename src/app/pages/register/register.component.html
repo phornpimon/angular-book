@@ -1,41 +1,84 @@
 <div class="container">
-    <h1 class="font-weight-bold text-danger text-center mt-5">Register</h1>
+    <h3 class="font-weight-bold text-center mt-5">สมัครสมาชิกใหม่ Enjoy Book</h3>
     <div class="register-main">
-        <form style="width: 350px;">
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example1">Email address</label>
-                <input type="email" id="form2Example1" class="form-control" />
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-center">
+                <img class="img-user" [src]="imgURL" *ngIf="imgURL">
             </div>
-        
-            <!-- Password input -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example2">Password</label>
-                <input type="password" id="form2Example2" class="form-control" />
+            <div class="d-flex justify-content-center">
+                <span class="mt-4" style="color:red;" *ngIf="message">{{message}}</span>
+                <input class="mt-4 mb-4" #file type="file" accept='image/*' (change)="preview($event)" />
             </div>
-        
-            <!-- 2 column grid layout for inline styling -->
-            <div class="row mb-4">
-                <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                        <label class="form-check-label" for="form2Example31"> Remember me </label>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">ชื่อ-สกุล</label>
+                        <input type="text" class="form-control" formControlName="name" />
                     </div>
                 </div>
-        
-                <div class="col">
-                    <!-- Simple link -->
-                    <a href="#!">ลืมรหัสผ่าน?</a>
+                <div class="col-12 col-md-6">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">วันเดือนปีเกิด</label>
+                        <input type="date" class="form-control" formControlName="birthDate"/>
+                    </div>
                 </div>
             </div>
-        
-            <!-- Submit button -->
-            <button type="button" class="btn btn-danger btn-block mb-4">สมัครสมาชิก</button>
-        
-            <!-- Register buttons -->
-            <div class="text-center">
-                <p>หรือ <a href="login">กลับสู่หน้า Login</a></p>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">เบอร์มือถือ</label>
+                        <input type="tel" class="form-control" formControlName="tel" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">อีเมล</label>
+                        <input type="email" class="form-control" formControlName="email" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">ที่อยู่</label>
+                        <input type="text" class="form-control" formControlName="address" />
+                    </div>
+                </div>
+            </div>
+            <div class="register-user pt-3 mb-3 pl-3 pr-3">
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div class="form-outline mb-4">
+                            <label class="form-label">ชื่อผู้ใช้งาน</label>
+                            <input type="text" class="form-control" formControlName="username" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div class="form-outline mb-4">
+                            <label class="form-label">รหัสผ่าน</label>
+                            <input type="password" class="form-control" formControlName="password" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div class="form-outline mb-4">
+                            <label class="form-label">ยืนยันรหัสผ่าน</label>
+                            <input type="password" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center ">
+                <button type="submit" class="btn btn-danger button-login">ตกลง</button>
+                <button type="button" class="btn btn-secondary button-login ml-2">ยกเลิก</button>
+            </div>
+
+            <div class="text-center mt-3">
+                <p>ลงชื่อเข้าใช้บัญชี <a href="login">คลิก</a> ที่นี่</p>
             </div>
         </form>
     </div>

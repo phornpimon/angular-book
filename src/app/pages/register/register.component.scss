@@ -1,8 +1,24 @@
 :host {
-
     .register-main {
         margin: 32px 0 0;
         display: flex;
         justify-content: center;
+
+        .img-user {
+            height: 200px;
+            width: 200px;
+            border: 1px solid gainsboro;
+            border-radius: 50%;
+        }
+
+        .register-user {
+            background-color: ghostwhite;
+            border-radius: 10px;
+        }
+
+        .button-login {
+            width: 140px;
+            border-radius: 50px;
+        }
     }
 }
