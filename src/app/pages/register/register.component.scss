@@ -1,9 +1,8 @@
 :host {
     .register-main {
-        margin: 32px 0 0;
-        display: flex;
-        justify-content: center;
-
+        max-width: 800px;
+        margin: auto;
+        
         .img-user {
             height: 200px;
             width: 200px;

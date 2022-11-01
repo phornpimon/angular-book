@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -10,39 +10,36 @@ import { first } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
 
-  public form: FormGroup
   public loading = false;
   public submitted = false;
+
+  public input: any
 
   public imagePath: any
   public imgURL: any
   public message: any
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
+    public userservice: UserService,
   ) { }
 
   ngOnInit(): void {
     this.imgURL = 'assets/image/user_icon.jpg'
-
-    this.form = this.formBuilder.group({
-      image: ['', Validators.required],
-      name: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      tel: ['', Validators.required],
-      email: ['', Validators.required],
-      address: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    this.input = {
+      role: 'USER',
+      image: null,
+      name: new FormControl(),
+      birthDate: new FormControl(),
+      telephone: new FormControl(),
+      email: new FormControl(),
+      address: new FormControl(),
+      username: new FormControl(),
+      password: new FormControl()
+    }
   }
 
-  get f() { return this.form.controls; }
-
   preview(files: any) {
-    console.log(`files`, files)
+    console.log(`files`,files[0])
     if (files.length === 0)
       return;
 
@@ -53,7 +50,7 @@ export class RegisterComponent implements OnInit {
     }
 
     var reader = new FileReader();
-    this.imagePath = files;
+    this.imagePath =files[0];
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
@@ -61,6 +58,26 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    let day = this.input.birthDate.value.day
+    let momth = this.input.birthDate.value.momth
+    let year = this.input.birthDate.value.year
     const formData = new FormData();
+    formData.append('role',this.input.role)
+    formData.append('image',this.imagePath)
+    formData.append('name', this.input.name.value)
+    formData.append('birthDay', day)
+    formData.append('birthMonth', momth)
+    formData.append('birthYear', year)
+    formData.append('telephone', this.input.telephone.value)
+    formData.append('email', this.input.email.value)
+    formData.append('address', this.input.address.value)
+    formData.append('username', this.input.username.value)
+    formData.append('password', this.input.password.value)
+
+    this.userservice.register(formData).subscribe((data: any) => {
+      if (data) {
+        console.log(`data`,data)
+      }
+    })
   }
 }
