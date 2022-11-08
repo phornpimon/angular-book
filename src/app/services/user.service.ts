@@ -16,4 +16,8 @@ export class UserService {
   register(formData: any): Observable<any> {
     return this.apiService.post(`${this.apiPath}/register`, formData)
   }
+
+  // login(): Observable<any> {
+  //   return this.apiService.post(`${this.apiPath}/login`)
+  // }
 }

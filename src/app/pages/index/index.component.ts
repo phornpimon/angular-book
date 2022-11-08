@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.imglink = 'https://youtubeclone-joy.s3.ap-southeast-1.amazonaws.com/'
+    this.imglink = 'https://storage-enjoybook.s3.us-west-2.amazonaws.com/'
     this.input = {
       searchbookname: '',
       flag: 'all',

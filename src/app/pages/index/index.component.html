@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-3 col-6" *ngFor="let item of bookservice.getListBook(); index as i">
             <div class="book-item" (click)="getBook(item.id)">
-                <div class="div-img"><img src="https://storage-enjoy-book.s3.us-west-2.amazonaws.com/{{item.image}}" class="img">
+                <div class="div-img"><img [src]="imglink+item.image" class="img">
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="div-desc">

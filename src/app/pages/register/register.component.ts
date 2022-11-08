@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms'
 import { UserService } from 'src/app/services/user.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-register',
@@ -10,17 +12,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  public loading = false;
-  public submitted = false;
-
-  public input: any
-
-  public imagePath: any
   public imgURL: any
+  public input: any
+  public imagePath: any
   public message: any
 
   constructor(
-    public userservice: UserService,
+    private router: Router,
+    private userservice: UserService,
+    private ngbModal: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +30,9 @@ export class RegisterComponent implements OnInit {
       image: null,
       name: new FormControl(),
       birthDate: new FormControl(),
+      day: Blob,
+      month: Blob,
+      year: Blob,
       telephone: new FormControl(),
       email: new FormControl(),
       address: new FormControl(),
@@ -39,7 +42,6 @@ export class RegisterComponent implements OnInit {
   }
 
   preview(files: any) {
-    console.log(`files`,files[0])
     if (files.length === 0)
       return;
 
@@ -57,17 +59,20 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  changedDate(event: any) {
+    this.input.day = event.day
+    this.input.month = event.month
+    this.input.year = event.year    
+  }
+
   onSubmit() {
-    let day = this.input.birthDate.value.day
-    let momth = this.input.birthDate.value.momth
-    let year = this.input.birthDate.value.year
     const formData = new FormData();
     formData.append('role',this.input.role)
     formData.append('image',this.imagePath)
     formData.append('name', this.input.name.value)
-    formData.append('birthDay', day)
-    formData.append('birthMonth', momth)
-    formData.append('birthYear', year)
+    formData.append('birthDay', this.input.day)
+    formData.append('birthMonth', this.input.month)
+    formData.append('birthYear', this.input.year)
     formData.append('telephone', this.input.telephone.value)
     formData.append('email', this.input.email.value)
     formData.append('address', this.input.address.value)
@@ -76,8 +81,20 @@ export class RegisterComponent implements OnInit {
 
     this.userservice.register(formData).subscribe((data: any) => {
       if (data) {
-        console.log(`data`,data)
+        this.popup()
       }
     })
   }
+
+  popup() {
+		const modalRef = this.ngbModal.open(
+      PopUpComponent,
+      { centered: true });
+		modalRef.componentInstance.message = 'สมัครสมาชิก Enjoy Book สำเร็จ';
+    modalRef.closed.subscribe(result => {
+      if (result) {
+        this.router.navigateByUrl("/login")
+      }
+    })
+	}
 }
