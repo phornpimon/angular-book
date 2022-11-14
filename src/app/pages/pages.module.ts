@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index.component';
 import { BookComponent } from './book/book.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -15,11 +16,15 @@ import { RegisterComponent } from './register/register.component';
     IndexComponent,
     BookComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     ...IMPORTS,
     PagesRoutingModule
+  ],
+  exports: [
+    ProfileComponent
   ]
 })
 export class PagesModule { }

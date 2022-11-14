@@ -2,27 +2,27 @@
     <h3 class="font-weight-bold text-center mt-5">ลงชื่อเข้าใช้บัญชี Enjoy Book ของคุณ</h3>
     <div class="login-main">
         <form style="width: 350px;">
-            <!-- Email input -->
+            <!-- Username input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example1">ชื่อผู้ใช้งาน</label>
-                <input type="email" id="form2Example1" class="form-control" />
+                <label class="form-label" for="username">ชื่อผู้ใช้งาน</label>
+                <input [formControl]="input.username" type="text" id="form2Example1" class="form-control"/>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="form2Example2">รหัสผ่าน</label>
-                <input type="password" id="form2Example2" class="form-control" />
+                <label class="form-label" for="password">รหัสผ่าน</label>
+                <input  [formControl]="input.password" type="password" id="form2Example2" class="form-control"/>
             </div>
 
             <!-- 2 column grid layout for inline styling -->
             <div class="d-flex justify-content-end mb-2">
                 <!-- Simple link -->
-                <a href="#!">ลืมรหัสผ่าน?</a>
+                <!-- <a href="#!">ลืมรหัสผ่าน?</a> -->
             </div>
 
             <!-- Submit button -->
             <div class="d-flex justify-content-center ">
-                <button type="button" class="btn btn-danger button-login">เข้าสู่ระบบ</button>
+                <button type="submit" class="btn btn-danger button-login" (click)="Login()">เข้าสู่ระบบ</button>
                 <button type="button" class="btn btn-secondary button-login ml-2">ยกเลิก</button>
             </div>
 

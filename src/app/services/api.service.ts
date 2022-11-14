@@ -18,9 +18,9 @@ export class ApiService {
     return this.httpClient.get<any>(url)
   }
 
-  post(path: string, formData: any): Observable<any> {
+  post(path: string, data: any): Observable<any> {
     const url = `${BASE_API}${path}`
-    return this.httpClient.post<any>(url, formData)
+    return this.httpClient.post<any>(url, data)
   }
 
 }
