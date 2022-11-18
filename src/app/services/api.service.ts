@@ -13,7 +13,7 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  get(path: string): Observable<any> {
+  get(path: string, headers?: any): Observable<any> {
     const url = `${BASE_API}${path}`
     return this.httpClient.get<any>(url)
   }

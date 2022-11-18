@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PopUpComponent } from 'src/app/components/pop-up/pop-up.component';
+import { ProfileService } from 'src/app/services/profile.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private router: Router,
     private userservice: UserService,
-    private ngbModal: NgbModal
+    private ngbModal: NgbModal,
+    private profileservice: ProfileService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,12 @@ export class ProfileComponent implements OnInit {
       username: new FormControl(),
       password: new FormControl()
     }
+
+    let token = localStorage.getItem('token')
+    let username = localStorage.getItem('username')
+    this.profileservice.getProfile(username, token).subscribe((data: any) =>{
+      console.log(`data`,data)
+    })
   }
 
   preview(files: any) {

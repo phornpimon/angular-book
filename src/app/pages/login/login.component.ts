@@ -26,33 +26,40 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.input = {
-      username: new FormControl('',Validators.required),
-      password: new FormControl()
+      username: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required)
     }
-    if (this.userService.isLoggedIn()) {
-      this.router.navigate(['/profile'])
-    } else {
-      this.router.navigate(['/login'])
-    }
+    // if (this.userService.isLoggedIn()) {
+    //   this.router.navigate(['/profile'])
+    // } else {
+    //   this.router.navigate(['/login'])
+    // }
   }
 
   Login() {
     this.loginDetail.username = this.input.username.value
     this.loginDetail.password = this.input.password.value
 
-    this.userService.login(this.loginDetail).subscribe({
-      next: (next) => {
-        if (next) {
-          localStorage.setItem("username" , next.username);  
-          localStorage.setItem("token" , next.token);
-
-          this.router.navigate(['/profile'])
+    if (this.loginDetail.username && this.loginDetail.password) {
+      this.userService.login(this.loginDetail).subscribe({
+        next: (next) => {
+          if (next) {
+            localStorage.setItem("username" , next.username);  
+            localStorage.setItem("token" , next.token);
+  
+            this.router.navigate(['/profile'])
+          }
+  
+        },
+        error: (error) => {
+          console.log(`error`,error)
+          if (error.status == '401') {
+            alert('user password ไม่ถูกต้อง')
+          }
         }
-
-      },
-      error: (error) => {console.log(`error`,error)}
-    })
-
+      })
+    } else {
+      alert('กรอกข้อมูลให้ครบถ้วน')
+    }
   }
-
 }
