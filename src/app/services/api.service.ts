@@ -15,7 +15,7 @@ export class ApiService {
 
   get(path: string, headers?: any): Observable<any> {
     const url = `${BASE_API}${path}`
-    return this.httpClient.get<any>(url)
+    return this.httpClient.get<any>(url, { headers: headers })
   }
 
   post(path: string, data: any): Observable<any> {

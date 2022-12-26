@@ -19,7 +19,7 @@ export class BookService {
   }
 
   getAllBook(offSet: number, pageSize: number): Observable<any> {
-    return this.apiService.get(`${this.apiPath}/offset=${offSet}/pageSize=${pageSize}`)
+    return this.apiService.get(`${this.apiPath}/sort/id/offset=${offSet}/pageSize=${pageSize}`)
   }
 
   getBookCategory(category: any, offSet: number, pageSize: number): Observable<any> {

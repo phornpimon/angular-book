@@ -10,6 +10,7 @@ import { BookService } from 'src/app/services/book.service';
 export class BookComponent implements OnInit {
 
   public input: any
+  public imglink: any
 
   constructor(
     private bookservice: BookService,
@@ -20,7 +21,7 @@ export class BookComponent implements OnInit {
     this.input = {
       id: this.route.snapshot.paramMap.get("id")
     }
-
+    this.imglink = 'https://storage-enjoybook.s3.us-west-2.amazonaws.com/'
     this.getBookById(this.input.id)
   }
 

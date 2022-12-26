@@ -17,6 +17,9 @@ export class ProfileService {
   ) { }
 
   getProfile(username: any, token: any): Observable<any> {
-    return this.apiservice.get(`${this.apiPath}/?username=${username}`)
+    const headers = new HttpHeaders().append(
+      'Authorization', `Bearer ${token}`
+    )
+    return this.apiservice.get(`${this.apiPath}/?username=${username}`, headers)
   }
 }

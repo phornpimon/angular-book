@@ -12,7 +12,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-outline mb-4">
                     <label class="form-label">ชื่อ-สกุล</label>
-                    <input type="text" class="form-control" [formControl]="input.name" />
+                    <input type="text" class="form-control" [ngModel]="input.name.value" [formControl]="input.name" />
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -33,13 +33,13 @@
             <div class="col-12 col-md-6">
                 <div class="form-outline mb-4">
                     <label class="form-label">เบอร์มือถือ</label>
-                    <input type="text" class="form-control" [formControl]="input.telephone" />
+                    <input type="text" class="form-control" [ngModel]="input.telephone.value" [formControl]="input.telephone" />
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-outline mb-4">
                     <label class="form-label">อีเมล</label>
-                    <input type="text" class="form-control" [formControl]="input.email" />
+                    <input type="text" class="form-control" [ngModel]="input.email.value" [formControl]="input.email" />
                 </div>
             </div>
         </div>
@@ -47,11 +47,11 @@
             <div class="col-12">
                 <div class="form-outline mb-4">
                     <label class="form-label">ที่อยู่</label>
-                    <input type="text" class="form-control" [formControl]="input.address" />
+                    <input type="text" class="form-control" [ngModel]="input.address.value" [formControl]="input.address" />
                 </div>
             </div>
         </div>
-        <div class="register-user pt-3 mb-3 pl-3 pr-3">
+        <div *ngIf="false" class="register-user pt-3 mb-3 pl-3 pr-3">
             <div class="row">
                 <div class="col-12 col-md-7">
                     <div class="form-outline mb-4">

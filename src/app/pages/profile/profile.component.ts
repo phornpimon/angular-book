@@ -46,6 +46,12 @@ export class ProfileComponent implements OnInit {
     let username = localStorage.getItem('username')
     this.profileservice.getProfile(username, token).subscribe((data: any) =>{
       console.log(`data`,data)
+      this.imgURL = `https://storage-enjoybook.s3.us-west-2.amazonaws.com/`+data.image
+      this.input.name.value = data.name
+      this.input.telephone.value = data.telephone
+      this.input.email.value = data.email
+      this.input.address.value = data.address
+      this.input.birthDate.value = data.birthDate
     })
   }
 

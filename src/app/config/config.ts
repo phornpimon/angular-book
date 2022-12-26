@@ -22,7 +22,7 @@ const BASE = {
 
     //? prod
     PROD: {
-        BASE_API: "http://bachendtest-env.eba-m4dvp5wd.us-west-2.elasticbeanstalk.com",
+        BASE_API: "http://backendspringbootbook-env.eba-ad4jycde.us-west-2.elasticbeanstalk.com",
         BASE_PATH_API: ""
     }
 
